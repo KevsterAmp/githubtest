@@ -1,10 +1,12 @@
 The scrapy folder contains all versions of scrapy_spiders. 
 # HOW TO RUN SPIDER
 First go to the spider using cd, then run the spider using:
-  scrapy crawl <spider_name> -a <input_csv_file> -o <output_csv_file>
+    
+    scrapy crawl <spider_name> -a <input_csv_file> -o <output_csv_file>
  
  via google colab
-  !scrapy crawl <spider_name> -a <input_csv_file> -o <output_csv_file>
+  
+    !scrapy crawl <spider_name> -a <input_csv_file> -o <output_csv_file>
 
 # shopify_spider_v1
 Scraped the first 100 links of shopify_stores, collected the title and all the text in the <body>. The extracted text are unique words from the html.
