@@ -1,0 +1,51 @@
+import scrapy
+import re
+import pandas as pd
+
+class shopifyspider(scrapy.Spider):
+    name = 'shopify'
+
+    global df, shopify_url, empty_df
+    df = pd.read_csv('shopify_stores_v2.csv')
+    shopify_url = list(df["domain_url"])
+    empty_df = pd.DataFrame()
+    
+    def start_requests(self):
+        global urls
+        global i
+        i = -1
+        urls = shopify_url[:5]
+        for url in urls:
+            yield scrapy.Request(url=url, callback = self.parse)
+
+    
+    def parse(self, response):
+        #gets all the texts in the website
+        text = response.css('body :not(script):not(style):not(code)::text').extract()
+        title = response.css('title::text').extract()
+
+        #removes spaces and blanks
+        clean_txt = [x.strip() for x in text]
+        while '' in clean_txt: clean_txt.remove('')
+        clean_title = [x.strip() for x in title]
+
+        #removes special characters
+        data = []
+        pattern = re.compile(r'\{+')
+        pattern1 = re.compile(r'\}+')
+
+        for x in clean_txt:
+            x = pattern.sub('', x).strip("(")
+            x = pattern1.sub('', x).strip(")")
+            data.append(x.strip())
+
+        global i
+        i += 1
+        #joins into a string
+        ext = " ".join(set(data))
+        extitle = " ".join(set(clean_title))
+        yield {
+            "domain_url" : urls[i],
+            "title": extitle,
+            "texts" : ext
+        }
