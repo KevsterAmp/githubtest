@@ -1,4 +1,4 @@
-# Scrapy settings for shopify_v4 project
+# Scrapy settings for shopify_v6 project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -7,10 +7,10 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'shopify_v4'
+BOT_NAME = 'shopify_v6'
 
-SPIDER_MODULES = ['shopify_v4.spiders']
-NEWSPIDER_MODULE = 'shopify_v4.spiders'
+SPIDER_MODULES = ['shopify_v6.spiders']
+NEWSPIDER_MODULE = 'shopify_v6.spiders'
 
 # Enable logging
 LOG_ENABLED = True
@@ -20,6 +20,7 @@ LOG_LEVEL = 'DEBUG'
 
 # Define the log file
 LOG_FILE = 'scrapy.log'
+
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'shopify_v4 (+http://www.yourdomain.com)'
 USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36 Edg/108.0.1462.42'
@@ -28,7 +29,6 @@ USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTM
 ROBOTSTXT_OBEY = True
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-CONCURRENT_REQUESTS = 32
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
@@ -94,8 +94,6 @@ CONCURRENT_REQUESTS = 32
 #HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
-RETRY_HTTP_CODES: list[500, 502, 503, 504, 522, 524, 408]
-RETRY_TIMES: 5
 
 # Set settings whose default value is deprecated to a future-proof value
 REQUEST_FINGERPRINTER_IMPLEMENTATION = '2.7'
