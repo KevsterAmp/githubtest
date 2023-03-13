@@ -3,7 +3,6 @@ import re
 import pandas as pd
 
 class shopifyspider(scrapy.Spider):
-    #v6
     name = 'shopify_spider'
 
     def __init__(self, csv_file):
